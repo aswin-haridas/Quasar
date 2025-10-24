@@ -1,5 +1,4 @@
 function App() {
-  return <div>Vite template with Tailwind CSS and TypeScript</div>;
+  return <div>Vite template Tailwind CSS + TypeScript</div>;
 }
-
 export default App;
