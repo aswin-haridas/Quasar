@@ -24,7 +24,7 @@ export default function Main() {
       <Editor
         height="100vh"
         width="100%"
-        defaultLanguage="Markdown"
+        defaultLanguage="markdown"
         defaultValue={content}
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
