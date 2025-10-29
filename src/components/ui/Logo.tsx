@@ -1,5 +1,5 @@
 export default function Logo() {
   return (
-    <span className="bodoni-moda text-xl px-2 text-primary-300">quasar</span>
+    <span className="playfair-bold text-xl px-2 text-blue-500 hover:underline cursor-pointer">quasar</span>
   )
 }

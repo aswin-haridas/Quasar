@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-export type Theme = 'tokyo-night' | 'tokyo-night-storm' | 'tokyo-night-light'
+export type Theme = 'tokyo-night' | 'one-dark-pro' | 'tokyo-night-light'
 
 interface EditorState {
   content: string

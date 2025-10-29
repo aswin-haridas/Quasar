@@ -2,25 +2,12 @@ import Editor, { type Monaco } from '@monaco-editor/react'
 import { useRef, useEffect } from 'react'
 import type { editor } from 'monaco-editor'
 import useEditorStore from '../store/useEditorStore'
-import tokyoNightTheme from '../../themes/tokyo-night-color-theme.json'
-import tokyoNightStormTheme from '../../themes/tokyo-night-storm-color-theme.json'
-import tokyoNightLightTheme from '../../themes/tokyo-night-light-color-theme.json'
-
-interface TokenColor {
-  name?: string
-  scope: string | string[]
-  settings: {
-    foreground?: string
-    background?: string
-    fontStyle?: string
-  }
-}
-
-interface ThemeData {
-  name: string
-  colors: Record<string, string>
-  tokenColors: TokenColor[]
-}
+import {
+  tokyoNightTheme,
+  oneDarkProTheme,
+  tokyoNightLightTheme,
+} from '../themes'
+import { markdownEditorConfig } from '../config/editorConfig'
 
 export default function Main() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
@@ -29,28 +16,6 @@ export default function Main() {
   const content = useEditorStore(state => state.content)
   const theme = useEditorStore(state => state.theme)
 
-  const defineTheme = (
-    monaco: Monaco,
-    themeName: string,
-    themeData: ThemeData
-  ) => {
-    monaco.editor.defineTheme(themeName, {
-      base: themeName.includes('light') ? 'vs' : 'vs-dark',
-      inherit: true,
-      rules: (themeData.tokenColors as TokenColor[])
-        .map(token => ({
-          token: Array.isArray(token.scope)
-            ? token.scope.join(',')
-            : token.scope,
-          foreground: token.settings.foreground?.replace('#', ''),
-          background: token.settings.background?.replace('#', ''),
-          fontStyle: token.settings.fontStyle || '',
-        }))
-        .filter(rule => rule.token),
-      colors: themeData.colors,
-    })
-  }
-
   function handleEditorDidMount(
     editor: editor.IStandaloneCodeEditor,
     monaco: Monaco
@@ -58,19 +23,23 @@ export default function Main() {
     editorRef.current = editor
     monacoRef.current = monaco
 
-    // Define all Tokyo Night themes
-    defineTheme(monaco, 'tokyo-night', tokyoNightTheme as ThemeData)
-    defineTheme(monaco, 'tokyo-night-storm', tokyoNightStormTheme as ThemeData)
-    defineTheme(monaco, 'tokyo-night-light', tokyoNightLightTheme as ThemeData)
+    // Register custom themes
+    monaco.editor.defineTheme('tokyo-night', tokyoNightTheme)
+    monaco.editor.defineTheme('one-dark-pro', oneDarkProTheme)
+    monaco.editor.defineTheme('tokyo-night-light', tokyoNightLightTheme)
 
-    // Set the current theme
+    // Set the current theme AFTER registration
     monaco.editor.setTheme(theme)
+
+    // Force a refresh
+    editor.updateOptions({})
   }
 
   // Update theme when it changes in the store
   useEffect(() => {
-    if (monacoRef.current) {
+    if (monacoRef.current && editorRef.current) {
       monacoRef.current.editor.setTheme(theme)
+      editorRef.current.updateOptions({})
     }
   }, [theme])
 
@@ -86,16 +55,12 @@ export default function Main() {
       <Editor
         height="100vh"
         width="100%"
-        defaultLanguage="Markdown"
+        defaultLanguage="markdown"
         defaultValue={content}
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
-        theme="tokyo-night"
-        options={{
-          minimap: {
-            enabled: false,
-          },
-        }}
+        theme={theme}
+        options={markdownEditorConfig}
       />
     </>
   )
