@@ -2,11 +2,6 @@ import Editor, { type Monaco } from '@monaco-editor/react'
 import { useRef, useEffect } from 'react'
 import type { editor } from 'monaco-editor'
 import useEditorStore from '../store/useEditorStore'
-import {
-  tokyoNightTheme,
-  oneDarkProTheme,
-  tokyoNightLightTheme,
-} from '../themes'
 import { markdownEditorConfig } from '../config/editorConfig'
 
 export default function Main() {
@@ -23,12 +18,7 @@ export default function Main() {
     editorRef.current = editor
     monacoRef.current = monaco
 
-    // Register custom themes
-    monaco.editor.defineTheme('tokyo-night', tokyoNightTheme)
-    monaco.editor.defineTheme('one-dark-pro', oneDarkProTheme)
-    monaco.editor.defineTheme('tokyo-night-light', tokyoNightLightTheme)
-
-    // Set the current theme AFTER registration
+    // Set the current theme (using Monaco's built-in themes)
     monaco.editor.setTheme(theme)
 
     // Force a refresh

@@ -1,4 +1,4 @@
-import type { editor } from 'monaco-editor';
+import type { editor } from 'monaco-editor'
 
 export const tokyoNightLightTheme: editor.IStandaloneThemeData = {
   base: 'vs',
@@ -67,4 +67,4 @@ export const tokyoNightLightTheme: editor.IStandaloneThemeData = {
     'editorWarning.foreground': '#fb8c00',
     'editorInfo.foreground': '#1e88e5',
   },
-};
+}

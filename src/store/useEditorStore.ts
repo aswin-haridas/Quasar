@@ -1,7 +1,7 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-export type Theme = 'tokyo-night' | 'one-dark-pro' | 'tokyo-night-light'
+export type Theme = 'vs-dark' | 'light'
 
 interface EditorState {
   content: string
@@ -12,14 +12,14 @@ interface EditorState {
 
 const useEditorStore = create<EditorState>()(
   persist(
-    (set) => ({
-      content: "",
-      theme: "tokyo-night",
-      updateContent: (newContent) => set({ content: newContent }),
-      setTheme: (theme) => set({ theme }),
+    set => ({
+      content: '',
+      theme: 'vs-dark',
+      updateContent: newContent => set({ content: newContent }),
+      setTheme: theme => set({ theme }),
     }),
     {
-      name: "editor-storage", 
+      name: 'editor-storage',
     }
   )
 )

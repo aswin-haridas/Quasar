@@ -1,4 +1,4 @@
-import type { editor } from 'monaco-editor';
+import type { editor } from 'monaco-editor'
 
 export const oneDarkProTheme: editor.IStandaloneThemeData = {
   base: 'vs-dark',
@@ -49,4 +49,4 @@ export const oneDarkProTheme: editor.IStandaloneThemeData = {
     'editorBracketMatch.background': '#3e4451',
     'editorBracketMatch.border': '#4b5263',
   },
-};
+}

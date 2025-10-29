@@ -14,12 +14,12 @@ export default function Button({
   const hoverColor = 'blue-700'
 
   return (
-    <div className="w-fit h-fit m-1">
+    <div className="m-1 h-fit w-fit">
       <button
         onClick={onClick}
         {...rest}
         className={cn(
-          `bg-${color} hover:bg-${hoverColor} border-b-2 border-${hoverColor} hover:border-b-0 text-white px-4 py-[0.2em] rounded-sm hover:translate-y-[0.1em] cursor-pointer flex items-center gap-2 transition-colors`,
+          `bg-${color} hover:bg-${hoverColor} border-b-2 border-${hoverColor} flex cursor-pointer items-center gap-1 rounded-sm p-1 text-xs text-white transition-colors hover:translate-y-[0.1em] hover:border-b-0`,
           className
         )}
       >
