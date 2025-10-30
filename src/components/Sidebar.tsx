@@ -1,7 +1,7 @@
 import { FilePlus2, PackagePlus } from 'lucide-react'
-import useEditorStore from '../store/useEditorStore'
-import { cn } from 'utils/cn'
-import File from './FilesNFolders/File'
+import { useEditorStore } from '../store'
+import { cn } from '../utils'
+import { FileItem } from './file-explorer'
 
 export default function Sidebar() {
   const theme = useEditorStore(store => store.theme)
@@ -33,7 +33,7 @@ export default function Sidebar() {
         </div>
       </div>
       <div>
-        <File />
+        <FileItem />
       </div>
     </aside>
   )

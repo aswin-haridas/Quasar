@@ -1,6 +1,6 @@
 import { BrushCleaning, SaveIcon } from 'lucide-react'
-import { cn } from 'utils/cn'
-import useEditorStore from '../../store/useEditorStore'
+import { cn } from '../../utils'
+import { useEditorStore } from '../../store'
 import Button from './Button'
 import Logo from './Logo'
 import ThemeSwitcher from './ThemeSwitcher'

@@ -1,10 +1,10 @@
 import Editor, { type Monaco } from '@monaco-editor/react'
 import { useRef, useEffect } from 'react'
 import type { editor } from 'monaco-editor'
-import useEditorStore from '../store/useEditorStore'
-import { markdownEditorConfig } from '../config/editorConfig'
+import { useEditorStore } from '../../store'
+import { markdownEditorConfig } from './editor.config'
 
-export default function Main() {
+export default function EditorComponent() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
   const monacoRef = useRef<Monaco | null>(null)
   const updateContent = useEditorStore(state => state.updateContent)

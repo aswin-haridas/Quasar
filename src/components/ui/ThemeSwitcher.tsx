@@ -1,5 +1,5 @@
 import { SwatchBook } from 'lucide-react'
-import useEditorStore, { type Theme } from '../../store/useEditorStore'
+import { useEditorStore, type Theme } from '../../store'
 import Button from './Button'
 
 const themes: { value: Theme; label: string }[] = [
