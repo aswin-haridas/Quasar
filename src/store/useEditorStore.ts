@@ -1,3 +1,4 @@
+import type { SelectedProps } from 'types/index'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -8,6 +9,8 @@ interface EditorState {
   theme: Theme
   updateContent: (newContent: string) => void
   setTheme: (theme: Theme) => void
+  selected: SelectedProps
+  setSelected: (selected: SelectedProps) => void
 }
 
 const useEditorStore = create<EditorState>()(
@@ -17,6 +20,11 @@ const useEditorStore = create<EditorState>()(
       theme: 'vs-dark',
       updateContent: newContent => set({ content: newContent }),
       setTheme: theme => set({ theme }),
+      selected: { id: null, type: null },
+      setSelected: currentlyselected =>
+        set({
+          selected: { id: currentlyselected.id, type: currentlyselected.type },
+        }),
     }),
     {
       name: 'editor-storage',

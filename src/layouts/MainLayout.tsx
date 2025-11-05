@@ -10,7 +10,7 @@ export default function MainLayout() {
         visibleToasts={1}
         toastOptions={{
           style: {
-            color: 'var(--color-primary-500)',
+            color: 'blue',
           },
         }}
       />

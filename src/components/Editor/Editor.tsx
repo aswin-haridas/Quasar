@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react'
 import type { editor } from 'monaco-editor'
 import { useEditorStore } from '../../store'
 import { markdownEditorConfig } from './editor.config'
+import { cn } from 'utils/cn'
 
 export default function EditorComponent() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
@@ -37,8 +38,9 @@ export default function EditorComponent() {
     if (value !== undefined) {
       updateContent(value)
     }
-    console.log(content)
   }
+
+  const darkTheme = theme === 'vs-dark' ? 'bg-neutral-900 text-white' : ''
 
   return (
     <>
@@ -47,7 +49,18 @@ export default function EditorComponent() {
         width="100%"
         defaultLanguage="markdown"
         defaultValue={content}
+        value={content}
         onMount={handleEditorDidMount}
+        loading={
+          <div
+            className={cn(
+              'cookie flex h-full w-full items-center justify-center',
+              darkTheme
+            )}
+          >
+            Loading...
+          </div>
+        }
         onChange={handleEditorChange}
         theme={theme}
         options={markdownEditorConfig}

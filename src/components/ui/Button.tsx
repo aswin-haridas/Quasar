@@ -10,16 +10,13 @@ export default function Button({
   onClick: () => void
   className?: string
 }) {
-  const color = 'blue-500'
-  const hoverColor = 'blue-700'
-
   return (
     <div className="m-1 h-fit w-fit">
       <button
         onClick={onClick}
         {...rest}
         className={cn(
-          `bg-${color} hover:bg-${hoverColor} border-b-2 border-${hoverColor} flex cursor-pointer items-center gap-1 rounded-sm p-1 text-xs text-white transition-colors hover:translate-y-[0.1em] hover:border-b-0`,
+          `flex cursor-pointer items-center gap-1 rounded-sm border-b-2 border-blue-700 bg-blue-500 p-1 text-xs text-white transition-colors hover:translate-y-[0.1em] hover:border-b-0 hover:bg-blue-700`,
           className
         )}
       >
