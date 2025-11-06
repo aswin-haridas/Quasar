@@ -1,4 +1,4 @@
-import { Editor } from '../components/Editor'
+import { Editor } from '../components/editor'
 import Sidebar from '../components/Sidebar'
 
 export default function Workplace() {

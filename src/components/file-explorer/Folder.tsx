@@ -12,14 +12,14 @@ export default function Folder({
 }: FolderProps) {
   const isFolderSelected = selected.id === id && selected.type === 'folder'
   const [isExpanded, setIsExpanded] = useState(false)
+  const nestedFiles = files.filter(f => f.folderId === id)
   const derivedFolderName =
-    isExpanded && files.length > 0 ? `${folderName}/` : folderName
+    isExpanded && nestedFiles.length > 0 ? `${folderName}/` : folderName
+
   const handleClick = () => {
-    // If clicking the same folder, toggle expansion
     if (isFolderSelected) {
       setIsExpanded(prev => !prev)
     } else {
-      // If clicking a different folder, select it and expand
       setSelected({ id, type: 'folder' })
       setIsExpanded(true)
     }
@@ -32,17 +32,18 @@ export default function Folder({
         className={cn(
           'google-sans-code flex h-6 cursor-pointer items-center gap-1 px-1 text-sm select-none hover:bg-neutral-800',
           isFolderSelected && 'bg-neutral-800',
-          files.length === 0 && 'opacity-50'
+          nestedFiles.length === 0 && 'opacity-50'
         )}
       >
         {derivedFolderName}
       </div>
-      {isExpanded && files?.length > 0 && (
+      {isExpanded && nestedFiles?.length > 0 && (
         <div className="opacity-80">
-          {files?.map(f => (
+          {nestedFiles?.map(f => (
             <File
               key={f.id}
               id={f.id}
+              folderId={f.folderId}
               fileName={f.fileName}
               nested={f.nested}
               selected={selected}

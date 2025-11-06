@@ -2,6 +2,7 @@ export interface FileProps {
   id: number
   fileName: string
   nested: boolean
+  folderId: number | null
   selected: SelectedProps
   setSelected: React.Dispatch<React.SetStateAction<SelectedProps>>
 }
@@ -18,7 +19,7 @@ export interface SelectedProps {
   type: 'folder' | 'file' | null
 }
 
-export interface FilesWrapperProps {
+export interface ExplorerProps {
   files: FileProps[]
   folders: FolderProps[]
   selected: SelectedProps
