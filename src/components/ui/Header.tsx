@@ -21,8 +21,13 @@ export default function Header() {
         note: content,
         source: selected.id,
       }
-      const res = api.post('/save-notes', newNote)
-      console.log(res)
+      api
+        .post('/save-notes', newNote)
+        .then(res =>
+          toast(
+            res.status === 200 ? 'Note saved successfully' : 'Failed to save'
+          )
+        )
     } else {
       toast('File is not selected somehow')
     }

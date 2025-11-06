@@ -2,14 +2,12 @@ import type { FilesWrapperProps } from 'types/index'
 import File from './File'
 import Folder from './Folder'
 
-
 export default function FilesWrapper({
   files,
   folders,
   selected,
   setSelected,
 }: FilesWrapperProps) {
-
   return (
     <div>
       <div>

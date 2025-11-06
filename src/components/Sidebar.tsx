@@ -11,25 +11,8 @@ export default function Sidebar() {
     type: null,
     id: null,
   })
-  const [files, setFiles] = useState<FileProps[]>([
-    {
-      id: 3,
-      nested: false,
-      fileName: 'First file',
-      selected: currentlySelected,
-      setSelected: setCurrentlySelected,
-    },
-  ])
-  const [folders, setFolders] = useState<FolderProps[]>([
-    {
-      id: 4884,
-      files: [],
-      folderName: 'first folder',
-      selected: currentlySelected,
-      setSelected: setCurrentlySelected,
-    },
-  ])
-
+  const [files, setFiles] = useState<FileProps[]>([])
+  const [folders, setFolders] = useState<FolderProps[]>([])
   const setSelected = useEditorStore(state => state.setSelected)
 
   useEffect(() => {
