@@ -1,4 +1,4 @@
-import type { SelectedProps } from 'types/index'
+import type { FileProps, FolderProps, SelectedProps } from 'types/index'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -11,6 +11,12 @@ interface EditorState {
   setTheme: (theme: Theme) => void
   selected: SelectedProps
   setSelected: (selected: SelectedProps) => void
+
+  files: FileProps[]
+  folders: FolderProps[]
+  addFile: (file: FileProps) => void
+  addFolder: (folder: FolderProps) => void
+  updateFile: (id: number, updates: Partial<FileProps>) => void
 }
 
 const useEditorStore = create<EditorState>()(
@@ -25,6 +31,21 @@ const useEditorStore = create<EditorState>()(
         set({
           selected: { id: currentlyselected.id, type: currentlyselected.type },
         }),
+
+      files: [],
+      folders: [],
+      addFile: file =>
+        set(state => ({
+          files: [...state.files, file],
+        })),
+      addFolder: folder =>
+        set(state => ({
+          folders: [...state.folders, folder],
+        })),
+      updateFile: (id, updates) =>
+        set(state => ({
+          files: state.files.map(f => (f.id === id ? { ...f, ...updates } : f)),
+        })),
     }),
     {
       name: 'editor-storage',

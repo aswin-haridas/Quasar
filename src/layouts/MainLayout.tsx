@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import { Header } from '../components/ui'
 import { Toaster } from 'sonner'
+import { Header } from '../components/ui'
 
 export default function MainLayout() {
   return (
