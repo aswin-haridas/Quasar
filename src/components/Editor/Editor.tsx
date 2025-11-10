@@ -4,13 +4,27 @@ import type { editor } from 'monaco-editor'
 import { useEditorStore } from '../../store'
 import { markdownEditorConfig } from './editor.config'
 import { cn } from 'utils/cn'
+import api from 'utils/api'
+import { useQuery } from '@tanstack/react-query'
 
 export default function EditorComponent() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
   const monacoRef = useRef<Monaco | null>(null)
-  const updateContent = useEditorStore(state => state.updateContent)
-  const content = useEditorStore(state => state.content)
-  const theme = useEditorStore(state => state.theme)
+  const { content, updateContent, theme, selected } = useEditorStore(
+    state => state
+  )
+
+  const { data } = useQuery({
+    queryKey: ['note', selected?.id],
+    queryFn: async () => {
+      const res = await api.get(`/note/${selected?.id}`)
+      return res.data
+    },
+  })
+
+  useEffect(() => {
+    updateContent(data?.note)
+  }, [selected, data?.note, updateContent])
 
   function handleEditorDidMount(
     editor: editor.IStandaloneCodeEditor,

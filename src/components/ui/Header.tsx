@@ -13,6 +13,8 @@ export default function Header() {
   const selected = useEditorStore(store => store.selected)
   const updateContent = useEditorStore(store => store.updateContent)
 
+  console.log('selected', selected)
+
   function saveNote() {
     if (selected.type === 'file') {
       const newNote = {
