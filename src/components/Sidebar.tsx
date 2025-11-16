@@ -1,20 +1,13 @@
 import { FilePlus2, PackagePlus } from 'lucide-react'
-import useExplorer from '../hooks/useExplorer'
 import { useEditorStore } from '../store'
 import { cn } from '../utils'
-import Explorer from './file-explorer/Explorer'
+import Explorer from './Explorer'
+import useExplorer from '../hooks/useExplorer'
 
 export default function Sidebar() {
-  const theme = useEditorStore(store => store.theme)
+  const { theme } = useEditorStore(store => store)
 
-  const {
-    files,
-    folders,
-    createFile,
-    createFolder,
-    currentlySelected,
-    setCurrentlySelected,
-  } = useExplorer()
+  const { createFile, createFolder } = useExplorer()
 
   const darkTheme =
     theme === 'vs-dark' ? 'bg-neutral-900 border-neutral-700 text-white' : ''
@@ -41,12 +34,7 @@ export default function Sidebar() {
           <PackagePlus onClick={createFolder} size={16} />
         </div>
       </div>
-      <Explorer
-        files={files}
-        folders={folders}
-        setSelected={setCurrentlySelected}
-        selected={currentlySelected}
-      />
+      <Explorer />
     </aside>
   )
 }

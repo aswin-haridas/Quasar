@@ -8,7 +8,7 @@ export default function Toggle() {
     <button
       onClick={() => setOn(!on)}
       aria-pressed={on}
-      className={`relative w-12 h-6 rounded-full transition-colors duration-200 ease-out ${
+      className={`relative h-6 w-12 rounded-full transition-colors duration-200 ease-out ${
         on ? 'bg-blue-600' : 'bg-blue-300'
       }`}
     >

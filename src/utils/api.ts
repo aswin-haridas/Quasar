@@ -1,4 +1,3 @@
-
 import axios, { type AxiosInstance } from 'axios'
 
 const api: AxiosInstance = axios.create({
@@ -7,4 +6,4 @@ const api: AxiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-export default api 
+export default api

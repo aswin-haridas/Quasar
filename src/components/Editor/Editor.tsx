@@ -17,8 +17,11 @@ export default function EditorComponent() {
   const { data } = useQuery({
     queryKey: ['note', selected?.id],
     queryFn: async () => {
-      const res = await api.get(`/note/${selected?.id}`)
-      return res.data
+      if (selected.id && selected.type === 'file') {
+        const res = await api.get(`/note/${selected?.id}`)
+        return res.data
+      }
+      return null
     },
   })
 
