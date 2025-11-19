@@ -1,8 +1,10 @@
 import type { Node } from 'types/index'
 import { useEditorStore } from '../store'
+import api from 'utils/api'
 
 export default function useExplorer() {
   const { nodes, updateNodes, selected } = useEditorStore(store => store)
+
   function appendNodeToTree(newNode: {
     id: number
     name: string
@@ -27,6 +29,7 @@ export default function useExplorer() {
       })
     }
   }
+
   function createFile() {
     const id = Date.now()
     const newNode = {
@@ -47,5 +50,10 @@ export default function useExplorer() {
     appendNodeToTree(newNode)
   }
 
-  return { createFile, createFolder }
+  async function fetchNodes() {
+    const res = await api.get(`/nodes`)
+    return res.data
+  }
+
+  return { createFile, createFolder, fetchNodes }
 }

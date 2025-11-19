@@ -3,20 +3,32 @@ import { useEditorStore } from '../store'
 import { cn } from '../utils'
 import Explorer from './Explorer'
 import useExplorer from '../hooks/useExplorer'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
 
 export default function Sidebar() {
-  const { theme } = useEditorStore(store => store)
-
-  const { createFile, createFolder } = useExplorer()
+  const { theme, selected, updateNodes } = useEditorStore(store => store)
+  const { createFile, createFolder, fetchNodes } = useExplorer()
 
   const darkTheme =
     theme === 'vs-dark' ? 'bg-neutral-900 border-neutral-700 text-white' : ''
   const vaultName = '0034R'
 
+  const { data, isLoading } = useQuery({
+    queryKey: ['note', selected?.id],
+    queryFn: fetchNodes,
+  })
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      updateNodes(data)
+    }
+  }, [data, updateNodes])
+
   return (
     <aside
       className={cn(
-        'text-text-primary w-56 min-w-56 border-r border-neutral-200',
+        'text-text-primary w-56 min-w-56 overflow-y-auto border-r border-neutral-200',
         darkTheme
       )}
     >
@@ -34,7 +46,7 @@ export default function Sidebar() {
           <PackagePlus onClick={createFolder} size={16} />
         </div>
       </div>
-      <Explorer />
+      <Explorer loading={isLoading} />
     </aside>
   )
 }
