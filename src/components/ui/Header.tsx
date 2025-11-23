@@ -4,7 +4,7 @@ import { useEditorStore } from '../../store'
 import Button from './Button'
 import Logo from './Logo'
 import ThemeSwitcher from './ThemeSwitcher'
-import api from 'utils/api'
+import api from '../../utils/api'
 import { toast } from 'sonner'
 
 export default function Header() {

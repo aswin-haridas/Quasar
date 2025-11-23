@@ -1,4 +1,4 @@
-import type { Node, SelectedProps } from 'types/index'
+import type { Node, SelectedProps } from '../types/index'
 import { create } from 'zustand'
 
 export type Theme = 'vs-dark' | 'light'

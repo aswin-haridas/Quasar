@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronRight, File } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import type { Node } from 'types/index'
-import { cn } from 'utils/cn'
+import type { Node } from '../types/index'
+import { cn } from '../utils/cn'
 import { useEditorStore } from '../store'
 
 interface ExplorerProps {

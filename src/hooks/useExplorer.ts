@@ -1,6 +1,6 @@
-import type { Node } from 'types/index'
+import type { Node } from '../types/index'
 import { useEditorStore } from '../store'
-import api from 'utils/api'
+import api from '../utils/api'
 import { useCallback } from 'react'
 
 export default function useExplorer() {

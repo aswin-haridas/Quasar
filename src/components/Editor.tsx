@@ -1,10 +1,10 @@
 import Editor, { type Monaco } from '@monaco-editor/react'
 import { useRef, useEffect } from 'react'
 import type { editor } from 'monaco-editor'
-import { useEditorStore } from '../../store'
-import { markdownEditorConfig } from './editor.config'
-import { cn } from 'utils/cn'
-import api from 'utils/api'
+import { useEditorStore } from '../store'
+import { markdownEditorConfig } from '../utils/editor.config'
+import { cn } from '../utils/cn'
+import api from '../utils/api'
 import { useQuery } from '@tanstack/react-query'
 
 export default function EditorComponent() {
