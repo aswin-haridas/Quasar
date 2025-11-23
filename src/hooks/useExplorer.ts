@@ -1,6 +1,7 @@
 import type { Node } from 'types/index'
 import { useEditorStore } from '../store'
 import api from 'utils/api'
+import { useCallback } from 'react'
 
 export default function useExplorer() {
   const { nodes, updateNodes, selected } = useEditorStore(store => store)
@@ -50,10 +51,10 @@ export default function useExplorer() {
     appendNodeToTree(newNode)
   }
 
-  async function fetchNodes() {
+  const fetchNodes = useCallback(async () => {
     const res = await api.get(`/nodes`)
     return res.data
-  }
+  }, [])
 
   return { createFile, createFolder, fetchNodes }
 }

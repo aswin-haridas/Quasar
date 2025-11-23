@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
 export default function Sidebar() {
-  const { theme, selected, updateNodes } = useEditorStore(store => store)
+  const { theme, updateNodes } = useEditorStore(store => store)
   const { createFile, createFolder, fetchNodes } = useExplorer()
 
   const darkTheme =
@@ -15,7 +15,7 @@ export default function Sidebar() {
   const vaultName = '0034R'
 
   const { data, isLoading } = useQuery({
-    queryKey: ['note', selected?.id],
+    queryKey: ['nodes'],
     queryFn: fetchNodes,
   })
 

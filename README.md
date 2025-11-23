@@ -1,85 +1,100 @@
-# React + TypeScript + Vite
+# Quasar - Code Editor & Workplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Quasar is a modern web-based code editor and workplace application built with React, TypeScript, and Vite. It provides a professional development environment with Monaco Editor integration and a clean, responsive interface.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Technologies
+- **React 19** - UI framework with React Compiler enabled
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **React Router** - Client-side routing
 
-## React Compiler
+### Key Features
+- **Monaco Editor** - Full-featured code editor (same as VS Code)
+- **TailwindCSS 4** - Modern utility-first CSS framework
+- **Zustand** - Lightweight state management
+- **TanStack Query** - Data fetching and caching
+- **Axios** - HTTP client for API requests
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### UI Components
+- **Lucide React** - Icon library
+- **Sonner** - Toast notifications
+- **clsx** - Conditional class names
 
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
+```
+src/
+├── components/     # Reusable UI components (Editor, Sidebar, etc.)
+├── pages/         # Route pages (Workplace, Profile, Login)
+├── layouts/       # Layout components (MainLayout)
+├── store/         # Zustand state management
+├── themes/        # Theme configurations
+├── hooks/         # Custom React hooks
+├── utils/         # Utility functions
+└── types/         # TypeScript type definitions
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Main Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Workplace
+The main workspace includes:
+- **Sidebar Navigation** - File/project navigation
+- **Monaco Editor** - Full-featured code editing experience
+- **Multi-page Support** - Profile and workplace views
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Development Experience
+- **React Compiler** - Automatic optimization (note: impacts build performance)
+- **ESLint** - Code quality and consistency
+- **Prettier** - Code formatting with Tailwind plugin
+- **Hot Module Replacement** - Fast development feedback
+
+## Scripts
+
+```bash
+# Development server
+npm run dev
+
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
 ```
 
-afehfaohef
-a
-gs
-gaegeg
-g
-egs
-ae
-ga
-egf ee et44g4g
+## Getting Started
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
+
+2. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for Production**
+   ```bash
+   npm run build
+   ```
+
+## Configuration Files
+- `vite.config.ts` - Vite configuration
+- `tsconfig.json` - TypeScript configuration
+- `eslint.config.js` - ESLint rules
+- `prettier.config.mjs` - Prettier formatting rules
+
+## Notes
+- Uses Bun as package manager (see `bun.lock`)
+- React Compiler is enabled - may impact build performance
+- Configured for modern browsers with ES modules support
