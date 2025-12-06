@@ -1,11 +1,10 @@
 import Editor, { type Monaco } from '@monaco-editor/react'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import type { editor } from 'monaco-editor'
 import { useEditorStore } from '../store'
 import { markdownEditorConfig } from '../utils/editor.config'
 import { cn } from '../utils/cn'
 import api from '../utils/api'
-import { useQuery } from '@tanstack/react-query'
 
 export default function EditorComponent() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
@@ -13,21 +12,24 @@ export default function EditorComponent() {
   const { content, updateContent, theme, selected } = useEditorStore(
     state => state
   )
-
-  const { data } = useQuery({
-    queryKey: ['note', selected?.id],
-    queryFn: async () => {
-      if (selected.id && selected.type === 'file') {
-        const res = await api.get(`/note/${selected?.id}`)
-        return res.data
-      }
-      return null
-    },
-  })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    updateContent(data?.note)
-  }, [selected, data?.note, updateContent])
+    async function fetchNote() {
+      if (selected.id && selected.type === 'file') {
+        setLoading(true)
+        try {
+          const res = await api.get(`/note/${selected.id}`)
+          updateContent(res.data.note)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+    }
+    fetchNote()
+  }, [selected, updateContent])
 
   function handleEditorDidMount(
     editor: editor.IStandaloneCodeEditor,
@@ -62,7 +64,7 @@ export default function EditorComponent() {
   return (
     <>
       <Editor
-        height="100vh"
+        height="100%"
         width="100%"
         defaultLanguage="markdown"
         defaultValue={content}
@@ -75,7 +77,7 @@ export default function EditorComponent() {
               darkTheme
             )}
           >
-            Loading...
+            {loading ? 'Loading...' : ''}
           </div>
         }
         onChange={handleEditorChange}

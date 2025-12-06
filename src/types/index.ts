@@ -1,10 +1,10 @@
 export interface SelectedProps {
-  id: number | null
+  id: string | null
   type: 'folder' | 'file' | null
 }
 
 export interface Node {
-  id: number
+  id: string
   name: string
   isFolder: boolean
   children?: Node[]

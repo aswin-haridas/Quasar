@@ -12,6 +12,8 @@ interface EditorState {
   setTheme: (theme: Theme) => void
   selected: SelectedProps
   setSelected: (selected: SelectedProps) => void
+  renamingNodeId: string | null
+  setRenamingNodeId: (id: string | null) => void
 }
 
 const useEditorStore = create<EditorState>()(set => ({
@@ -26,6 +28,8 @@ const useEditorStore = create<EditorState>()(set => ({
     set({
       selected: { id: currentlyselected.id, type: currentlyselected.type },
     }),
+  renamingNodeId: null,
+  setRenamingNodeId: id => set({ renamingNodeId: id }),
 }))
 
 export default useEditorStore

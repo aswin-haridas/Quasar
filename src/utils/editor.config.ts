@@ -8,10 +8,12 @@ export const markdownEditorConfig: editor.IStandaloneEditorConstructionOptions =
   {
     // Basic editor behavior
     wordWrap: 'on', // Essential for markdown - wrap lines to viewport
-    wordWrapColumn: 80, // Fallback wrap column
+    // wordWrapColumn: 80, // Removed to ensure viewport wrapping
     wrappingStrategy: 'advanced', // Better wrapping algorithm
     wrappingIndent: 'same', // Maintain indentation on wrapped lines
-
+    stickyScroll: {
+      enabled: false,
+    },
     // Font and typography
     fontSize: 16,
     lineHeight: 28, // More spacious for reading
@@ -157,12 +159,6 @@ export const markdownEditorConfig: editor.IStandaloneEditorConstructionOptions =
     // Format
     formatOnPaste: false, // Can be disruptive in markdown
     formatOnType: false,
-
-    // Sticky scroll for headers
-    stickyScroll: {
-      enabled: true,
-      maxLineCount: 5,
-    },
 
     // Other useful options
     automaticLayout: true, // Auto-resize on container changes

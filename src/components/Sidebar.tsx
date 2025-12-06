@@ -3,27 +3,25 @@ import { useEditorStore } from '../store'
 import { cn } from '../utils'
 import Explorer from './Explorer'
 import useExplorer from '../hooks/useExplorer'
-import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Sidebar() {
-  const { theme, updateNodes } = useEditorStore(store => store)
+  const { theme } = useEditorStore(store => store)
   const { createFile, createFolder, fetchNodes } = useExplorer()
+  const [isLoading, setIsLoading] = useState(false)
 
   const darkTheme =
     theme === 'vs-dark' ? 'bg-neutral-900 border-neutral-700 text-white' : ''
   const vaultName = '0034R'
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['nodes'],
-    queryFn: fetchNodes,
-  })
-
   useEffect(() => {
-    if (data?.length > 0) {
-      updateNodes(data)
+    async function load() {
+      setIsLoading(true)
+      await fetchNodes()
+      setIsLoading(false)
     }
-  }, [data, updateNodes])
+    load()
+  }, [fetchNodes])
 
   return (
     <aside

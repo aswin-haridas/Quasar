@@ -4,7 +4,7 @@ import { Header } from '../components/ui'
 
 export default function MainLayout() {
   return (
-    <main className="h-screen w-screen">
+    <main className="flex h-screen w-screen flex-col overflow-hidden">
       <Toaster
         position="top-center"
         visibleToasts={1}
@@ -15,7 +15,7 @@ export default function MainLayout() {
         }}
       />
       <Header />
-      <div className="h-full w-full">
+      <div className="w-full flex-1 overflow-hidden">
         <Outlet />
       </div>
     </main>
