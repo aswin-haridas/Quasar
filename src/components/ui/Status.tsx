@@ -16,7 +16,8 @@ export default function Status() {
     let reconnectTimer: ReturnType<typeof setTimeout>
 
     const connect = () => {
-      ws = new WebSocket('ws://localhost:8000/ws/status')
+      const wsUrl = import.meta.env.VITE_WS_URL || 'ws://localhost:8000'
+      ws = new WebSocket(`${wsUrl}/ws/status`)
 
       ws.onopen = () => {
         setConnected(true)
