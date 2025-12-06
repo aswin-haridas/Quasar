@@ -3,6 +3,7 @@ import { cn } from '../../utils'
 import { useEditorStore } from '../../store'
 import Button from './Button'
 import Logo from './Logo'
+import Status from './Status'
 import ThemeSwitcher from './ThemeSwitcher'
 import api from '../../utils/api'
 import { toast } from 'sonner'
@@ -12,6 +13,8 @@ export default function Header() {
   const content = useEditorStore(store => store.content)
   const selected = useEditorStore(store => store.selected)
   const updateContent = useEditorStore(store => store.updateContent)
+  const viewMode = useEditorStore(store => store.viewMode)
+  const setViewMode = useEditorStore(store => store.setViewMode)
 
   function saveNote() {
     if (selected.type === 'file') {
@@ -47,10 +50,19 @@ export default function Header() {
     >
       <Logo />
       <div className="flex items-center">
+        <Status />
+        <div className="text-text-secondary mx-2 text-xs">|</div>
         <div className="text-text-secondary text-xs">
           updated just now (4 sec)
         </div>
-        <Button onClick={() => {}}>View Raw</Button>
+        <Button
+          onClick={() =>
+            setViewMode(viewMode === 'editor' ? 'preview' : 'editor')
+          }
+          className={viewMode === 'preview' ? 'bg-neutral-700 text-white' : ''}
+        >
+          {viewMode === 'editor' ? 'View Preview' : 'View Raw'}
+        </Button>
         <Button onClick={clearEditor}>
           <BrushCleaning size={16} />
           Clear
