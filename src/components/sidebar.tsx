@@ -1,8 +1,8 @@
 import { FilePlus2, PackagePlus } from 'lucide-react'
 import { useEditorStore } from '../store'
 import { cn } from '../utils'
-import Explorer from './Explorer'
-import useExplorer from '../hooks/useExplorer'
+import Explorer from './explorer'
+import useExplorer from '../hooks/use-explorer'
 import { useEffect, useState } from 'react'
 
 export default function Sidebar() {

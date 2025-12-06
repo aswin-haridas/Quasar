@@ -3,8 +3,8 @@ import { useState, useEffect, useRef } from 'react'
 import type { Node } from '../types'
 import { cn } from '../utils'
 import { useEditorStore } from '../store'
-import useExplorer from '../hooks/useExplorer'
-import ContextMenu, { ContextMenuItem } from './ContextMenu'
+import useExplorer from '../hooks/use-explorer'
+import ContextMenu, { ContextMenuItem } from './context-menu'
 
 interface ExplorerProps {
   loading: boolean

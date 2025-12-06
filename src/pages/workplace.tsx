@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import Editor from '../components/Editor'
-import Sidebar from '../components/Sidebar'
-import HtmlViewer from '../components/HtmlViewer'
+import Editor from '../components/editor'
+import Sidebar from '../components/sidebar'
+import HtmlViewer from '../components/html-viewer'
 import { useEditorStore } from '../store'
 import api from '../utils/api'
 
