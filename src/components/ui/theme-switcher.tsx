@@ -1,6 +1,6 @@
 import { SwatchBook } from 'lucide-react'
 import { useEditorStore, type Theme } from '../../store'
-import Button from './Button'
+import Button from './button'
 
 const themes: { value: Theme; label: string }[] = [
   { value: 'vs-dark', label: 'Dark' },

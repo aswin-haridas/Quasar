@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import MainLayout from './layouts/MainLayout'
-import Profile from './pages/Profile'
-import Workplace from './pages/Workplace'
+import MainLayout from './layouts/main-layout'
+import Profile from './pages/profile'
+import Workplace from './pages/workplace'
 
 export default function App() {
   return (

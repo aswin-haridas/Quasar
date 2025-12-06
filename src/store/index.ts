@@ -1,2 +1,2 @@
-export { default as useEditorStore } from './useEditorStore'
-export type { Theme } from './useEditorStore'
+export { default as useEditorStore } from './use-editor-store'
+export type { Theme } from './use-editor-store'
